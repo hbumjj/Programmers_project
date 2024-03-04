@@ -6,7 +6,6 @@ Created on Sat Mar  2 13:55:44 2024
 """
 
 # DFS와 BFS
-
 number, lines, start = [5,5,3] # 입력예시
 '''
 방문 노드
