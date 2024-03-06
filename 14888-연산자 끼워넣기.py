@@ -16,9 +16,15 @@ a,b,c,d = 2, 1, 1, 1 # 연산자 각각 + - * %
 # =============================================================================
 # Input
 # =============================================================================
-n = int(input())
-arr = list(map(int, input().split(' ')))
-a, b, c, d = map(int, input().split(' '))
+# n = int(input())
+# arr = list(map(int, input().split(' ')))
+# a, b, c, d = map(int, input().split(' '))
+
+
+
+n = 6 # len(arr)
+arr = [1, 2, 3, 4, 5, 6]
+a,b,c,d = 2, 1, 1, 1 # 연산자 각각 + - * %
 
 min_value =  int(1e9)
 max_value = int(-1e9)
@@ -66,6 +72,9 @@ def recur(sum, a, b, c, d, idx):
     
     global min_value
     global max_value
+      
+    
+    #print(a, b, c, d, idx)
     
     if idx == n:
         min_value = min(min_value, sum)
@@ -73,14 +82,18 @@ def recur(sum, a, b, c, d, idx):
         return
     
     if a:
+        #print(a, b, c, d, "a")
         recur(sum + arr[idx], a-1, b, c, d, idx+1)
     if b:
+        #print(a, b, c, d, "b")
         recur(sum - arr[idx], a, b-1, c, d, idx+1)
     if c:
+        #print(a, b, c, d, "c")
         recur(sum * arr[idx], a, b, c-1, d, idx+1)
     if d:
+        #print(a, b, c, d, "d")
         recur(int(sum / arr[idx]), a, b, c, d-1, idx+1)
-            
+             
 recur(arr[0], a, b, c, d, 1) # arr[0]: total # 0: length
 print(max_value)
 print(min_value)
