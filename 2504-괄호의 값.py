@@ -122,8 +122,8 @@ idx = 1
 from collections import deque
 
 
-string = input()
-#string = "[][]((])"
+#string = input()
+string = "[][]((])"
 array = deque()
 
 result = 0
@@ -161,6 +161,8 @@ for i in range(len(string)):
         idx = int(idx/3)
         array.pop()
 
+if array:
+    result = 0
 print(result)
 
 # result = 0
