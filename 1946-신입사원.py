@@ -51,25 +51,31 @@ arr = [[3,2],[1,4],[4,1],[2,3],[5,5]]
 # =============================================================================
 # 
 # =============================================================================
-Tn = int(input())
+
+import sys
+
+Tn = int(sys.stdin.readline())
+# n = 5
+# arr = [[3,2],[1,4],[4,1],[2,3],[5,5]]
 
 for test in range(Tn):
     
-    number = int(input()); dir_ = {}
+    number = int(sys.stdin.readline()); dir_ = {}
     
     for idx in range(number):
         dir_[idx+1] = 0
     
     for app in range(number):
-        a = list(map(int, input().split()))
+        a = list(map(int, sys.stdin.readline().split()))
         dir_[a[0]] = a[1] # 딕셔너리 화
+    
     # 정렬된 딕셔너리
-    criteria = 0; ans = dir_[1]
+    criteria = dir_[1]; ans = 1
     
     for i in dir_.values():
         if criteria > i:
             ans += 1
-            criteria = i
+            criteria = min(criteria, i)
     
     print(ans)
     
