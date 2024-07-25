@@ -22,27 +22,57 @@ arr = [[3,2],[1,4],[4,1],[2,3],[5,5]]
 # =============================================================================
 # 
 # =============================================================================
+# Tn = int(input())
+
+# for test in range(Tn):
+
+#     arr = []
+#     number = int(input())
+#     for app in range(number):
+#         a = list(map(int, input().split()))
+#         arr.append(a)
+
+#     sarr = sorted(arr, key = lambda arr: arr[0])
+    
+    
+#     result = []
+#     criteria = 0
+#     for i in sarr:
+#         if result == []:
+#             result.append(i)
+#             criteria = i[1]
+        
+#         if criteria > i[1]:
+#             result.append(i)
+#             criteria = min(criteria, i[1])
+    
+#     print(len(result))
+    
+# =============================================================================
+# 
+# =============================================================================
 Tn = int(input())
 
 for test in range(Tn):
-
-    arr = []
-    number = int(input())
+    
+    number = int(input()); dir_ = {}
+    
+    for idx in range(number):
+        dir_[idx+1] = 0
+    
     for app in range(number):
         a = list(map(int, input().split()))
-        arr.append(a)
-
-    sarr = sorted(arr, key = lambda arr: arr[0])
+        dir_[a[0]] = a[1] # 딕셔너리 화
+    # 정렬된 딕셔너리
+    criteria = 0; ans = dir_[1]
     
-    result = []
-    criteria = 0
-    for i in sarr:
-        if result == []:
-            result.append(i)
-            criteria = i[1]
-        
-        if criteria > i[1]:
-            result.append(i)
-            criteria = min(criteria, i[1])
+    for i in dir_.values():
+        if criteria > i:
+            ans += 1
+            criteria = i
     
-    print(len(result))
+    print(ans)
+    
+# =============================================================================
+# 
+# =============================================================================
