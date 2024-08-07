@@ -59,43 +59,79 @@ for i in s:
 # 
 # =============================================================================
 
-def turn(x, flag):
-    if flag == False:
-        return x
-    else:
-        if x == "B": 
-            return "W"
-        elif x == "W":
-            return "B"
+# def turn(x, flag):
+#     if flag == False:
+#         return x
+#     else:
+#         if x == "B": 
+#             return "W"
+#         elif x == "W":
+#             return "B"
         
-start = ["B","W"]
+# start = ["B","W"]
 
-answer = 10000000 # 수정
-for start_point in start:
-    # print(start_point)
+# answer = 10000000 # 수정
+# for start_point in start:
+#     # print(start_point)
     
-    ans = 0; flag = False
+#     ans = 0; flag = False
     
-    for i in range(len(arr)):
-        for j in range(len(arr[0])):
-            print(start_point, (i,j))
-            flag = True
-            if arr[i][j] != start_point:
-                ans += 1
-            start_point = turn(start_point, flag)
-    start_point = turn(start_point, flag)    
+#     for i in range(len(arr)):
+#         for j in range(len(arr[0])):
+#             print(start_point, (i,j))
+#             flag = True
+#             if arr[i][j] != start_point:
+#                 ans += 1
+#             start_point = turn(start_point, flag)
+#     start_point = turn(start_point, flag)    
             
-    #print(ans)
-    answer = min(answer, ans)
+#     #print(ans)
+#     answer = min(answer, ans)
 
-print(answer)
+# print(answer)
 
 # =============================================================================
-# 
+# 8x8으로 자른다.
 # =============================================================================
-    
-    
-    
+# 첫째줄부터 쭉....
+# 한 라인 치우고 한칸씩 내려가기
+# 템플릿으로 두번 평가
+
+templete_1 = [["W","B","W","B","W","B","W","B"],
+      ["B","W","B","W","B","W","B","W"],
+      ["W","B","W","B","W","B","W","B"],
+      ["B","W","B","W","B","W","B","W"],
+      ["W","B","W","B","W","B","W","B"],
+      ["B","B","B","W","B","W","B","W"],
+      ["W","B","W","B","W","B","W","B"],
+      ["B","W","B","W","B","W","B","W"]]
+
+templete_2 = [["B","W","B","W","B","W","B","W"],
+      ["W","B","W","B","W","B","W","B"],
+      ["B","W","B","W","B","W","B","W"],
+      ["W","B","W","B","W","B","W","B"],
+      ["B","B","B","W","B","W","B","W"],
+      ["W","B","W","B","W","B","W","B"],
+      ["B","W","B","W","B","W","B","W"],
+      ["W","B","W","B","W","B","W","B"]]
+
+tem = [templete_1, templete_2]
+answer = 1000000000
+
+for i in range(0, len(arr)-8):
+    for j in range(0, len(arr[0])-8):
+        print(i,j)
+        check = arr[i:i+8][j:j+8]
+        print("####", len(check), len(check[0]))
+        print(check)
+        ans = 0
+        for templete in tem:
+            for x in range(8):
+                for y in range(8):
+                    # print(x,y)
+                    if check[x][y] != templete[x][y]:
+                        ans += 1
+            answer = min(ans, answer)
     
     
     
