@@ -17,13 +17,6 @@ Created on Fri Sep 20 15:46:31 2024
 5 2개 - 2,4 1초 -> 
 
 '''
-q = [[1,1,1],[3,1,2],[6,1,1],[1,2,2,4],[8,2,2,4],[4,3,3,5,6]]
-
-
-end = {1:5, 2:0, 3:0, 4:0, 5:0, 6:0, 7:0} # 총 작업별로 걸리는 시간
-
-
-
 n = int(input())
 end = {}
 q = []
@@ -35,20 +28,17 @@ for c_n in range(n):
         end[c_n +1] = 0
         q.append(nn)
 
-# print(q, end)
-
 for c, i in enumerate(q):
-    subject_number = c+2
-    pre_subject = i[2:]
-    pre_time = i[0]
-    # print(" ")
-    max_ = 0
-    for pre in pre_subject:
-        # print(subject_number, pre, end, pre_time)
-        sam = pre_time + end[pre]
-        max_ = max(max_, sam)
-    
-    if max_ != 0:
+    subject_number = c+2 #  2번째 작업부터 시작
+    pre_subject = i[2:] # 선행작업리스트
+    pre_time = i[0] # 작업하는데 걸리는 시간
+    if i[1] == 0:
+        end[subject_number] = pre_time
+    else:
+        max_ = 0 # 초기화
+        for pre in pre_subject:
+            max_ = max(max_, pre_time + end[pre])
+        
         end[subject_number] = max_
 
-print(max_)
+print(max(end.values()))
